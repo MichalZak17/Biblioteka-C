@@ -8,6 +8,7 @@ all: library
 
 library: $(OBJS)
 	$(CC) $(CFLAGS) -o library $(OBJS)
+	@$(MAKE) clean
 
 $(SRCDIR)/main.o: $(SRCDIR)/main.c $(SRCDIR)/ui.h
 	$(CC) $(CFLAGS) -c $(SRCDIR)/main.c -o $(SRCDIR)/main.o
@@ -31,4 +32,4 @@ $(SRCDIR)/files.o: $(SRCDIR)/files.c $(SRCDIR)/files.h $(SRCDIR)/books.h $(SRCDI
 	$(CC) $(CFLAGS) -c $(SRCDIR)/files.c -o $(SRCDIR)/files.o
 
 clean:
-	rm -f $(OBJS) library
+	rm -f $(OBJS)
