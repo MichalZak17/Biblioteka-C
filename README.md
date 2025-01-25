@@ -31,4 +31,4 @@ The Library Management System is a software application designed to help librari
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## Contact Information
-For support or questions, please contact the project maintainer at michal.zak@example.com.
+For support or questions, please contact the project maintainer at michal.zak000@gmail.com.
