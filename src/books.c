@@ -1,8 +1,19 @@
+/**
+ * @file books.c
+ * @brief This file contains functions for managing books in the library system.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "books.h"
 
+/**
+ * @brief Adds a new book to the library.
+ * 
+ * @param books Pointer to the array of books.
+ * @param bookCount Pointer to the number of books.
+ */
 void addBook(Book **books, int *bookCount) {
     (*bookCount)++;
     *books = realloc(*books, (*bookCount) * sizeof(Book));
@@ -24,6 +35,13 @@ void addBook(Book **books, int *bookCount) {
     printf("Książka została dodana.\n");
 }
 
+/**
+ * @brief Removes a book from the library.
+ * 
+ * @param books Pointer to the array of books.
+ * @param bookCount Pointer to the number of books.
+ * @param bookId ID of the book to be removed.
+ */
 void removeBook(Book **books, int *bookCount, int bookId) {
     int found = 0;
     for (int i = 0; i < *bookCount; i++) {
@@ -43,6 +61,13 @@ void removeBook(Book **books, int *bookCount, int bookId) {
     }
 }
 
+/**
+ * @brief Updates the details of a book in the library.
+ * 
+ * @param books Array of books.
+ * @param bookCount Number of books.
+ * @param bookId ID of the book to be updated.
+ */
 void updateBook(Book *books, int bookCount, int bookId) {
     int found = 0;
     for (int i = 0; i < bookCount; i++) {
@@ -69,6 +94,13 @@ void updateBook(Book *books, int bookCount, int bookId) {
     }
 }
 
+/**
+ * @brief Searches for books in the library based on a keyword.
+ * 
+ * @param books Array of books.
+ * @param bookCount Number of books.
+ * @param keyword Keyword to search for.
+ */
 void searchBooks(Book *books, int bookCount, char *keyword) {
     printf("Wyniki wyszukiwania dla \"%s\":\n", keyword);
     int found = 0;
@@ -83,6 +115,12 @@ void searchBooks(Book *books, int bookCount, char *keyword) {
     }
 }
 
+/**
+ * @brief Lists all books in the library.
+ * 
+ * @param books Array of books.
+ * @param bookCount Number of books.
+ */
 void listBooks(Book *books, int bookCount) {
     printf("Lista książek:\n");
     for (int i = 0; i < bookCount; i++) {
@@ -91,4 +129,3 @@ void listBooks(Book *books, int bookCount) {
                books[i].available_copies, books[i].total_copies);
     }
 }
-

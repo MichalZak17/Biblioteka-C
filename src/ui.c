@@ -1,3 +1,8 @@
+/**
+ * @file ui.c
+ * @brief This file contains the user interface functions for the library management system.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -8,11 +13,51 @@
 #include "reports.h"
 #include "files.h"
 
+/**
+ * @brief Displays the menu for managing books.
+ * 
+ * @param books Pointer to the array of books.
+ * @param bookCount Pointer to the number of books.
+ */
 void booksMenu(Book **books, int *bookCount);
+
+/**
+ * @brief Displays the menu for managing readers.
+ * 
+ * @param readers Pointer to the array of readers.
+ * @param readerCount Pointer to the number of readers.
+ */
 void readersMenu(Reader **readers, int *readerCount);
+
+/**
+ * @brief Displays the menu for managing loans.
+ * 
+ * @param loans Pointer to the array of loans.
+ * @param loanCount Pointer to the number of loans.
+ * @param books Array of books.
+ * @param bookCount Number of books.
+ * @param readers Array of readers.
+ * @param readerCount Number of readers.
+ */
 void loansMenu(Loan **loans, int *loanCount, Book *books, int bookCount, Reader *readers, int readerCount);
+
+/**
+ * @brief Displays the menu for generating reports.
+ * 
+ * @param loans Array of loans.
+ * @param loanCount Number of loans.
+ * @param books Array of books.
+ * @param bookCount Number of books.
+ */
 void reportsMenu(Loan *loans, int loanCount, Book *books, int bookCount);
 
+/**
+ * @brief Displays the main menu of the library management system.
+ * 
+ * This function initializes the library system by loading data from files,
+ * displays the main menu, and handles user input to navigate through different
+ * management menus. It also saves data to files before exiting.
+ */
 void mainMenu() {
     Book *books = NULL;
     int bookCount = 0;
@@ -21,6 +66,7 @@ void mainMenu() {
     Loan *loans = NULL;
     int loanCount = 0;
 
+    // Load data from files
     loadBooks(&books, &bookCount, "books.txt");
     loadReaders(&readers, &readerCount, "readers.txt");
     loadLoans(&loans, &loanCount, "loans.txt");
@@ -50,6 +96,7 @@ void mainMenu() {
                 reportsMenu(loans, loanCount, books, bookCount);
                 break;
             case 0:
+                // Save data to files before exiting
                 saveBooks(books, bookCount, "books.txt");
                 saveReaders(readers, readerCount, "readers.txt");
                 saveLoans(loans, loanCount, "loans.txt");
@@ -60,11 +107,21 @@ void mainMenu() {
         }
     } while (choice != 0);
 
+    // Free allocated memory
     free(books);
     free(readers);
     free(loans);
 }
 
+/**
+ * @brief Displays the menu for managing books.
+ * 
+ * This function handles user input for adding, removing, updating, searching,
+ * and listing books in the library.
+ * 
+ * @param books Pointer to the array of books.
+ * @param bookCount Pointer to the number of books.
+ */
 void booksMenu(Book **books, int *bookCount) {
     int choice;
     char keyword[100];
@@ -111,6 +168,15 @@ void booksMenu(Book **books, int *bookCount) {
     } while (choice != 0);
 }
 
+/**
+ * @brief Displays the menu for managing readers.
+ * 
+ * This function handles user input for adding, removing, searching, and listing
+ * readers in the library.
+ * 
+ * @param readers Pointer to the array of readers.
+ * @param readerCount Pointer to the number of readers.
+ */
 void readersMenu(Reader **readers, int *readerCount) {
     int choice;
     char keyword[100];
@@ -151,6 +217,19 @@ void readersMenu(Reader **readers, int *readerCount) {
     } while (choice != 0);
 }
 
+/**
+ * @brief Displays the menu for managing loans.
+ * 
+ * This function handles user input for loaning, returning, and listing loans
+ * in the library.
+ * 
+ * @param loans Pointer to the array of loans.
+ * @param loanCount Pointer to the number of loans.
+ * @param books Array of books.
+ * @param bookCount Number of books.
+ * @param readers Array of readers.
+ * @param readerCount Number of readers.
+ */
 void loansMenu(Loan **loans, int *loanCount, Book *books, int bookCount, Reader *readers, int readerCount) {
     int choice;
     int id;
@@ -184,6 +263,17 @@ void loansMenu(Loan **loans, int *loanCount, Book *books, int bookCount, Reader 
     } while (choice != 0);
 }
 
+/**
+ * @brief Displays the menu for generating reports.
+ * 
+ * This function handles user input for generating loan history and most
+ * borrowed books reports.
+ * 
+ * @param loans Array of loans.
+ * @param loanCount Number of loans.
+ * @param books Array of books.
+ * @param bookCount Number of books.
+ */
 void reportsMenu(Loan *loans, int loanCount, Book *books, int bookCount) {
     int choice;
 

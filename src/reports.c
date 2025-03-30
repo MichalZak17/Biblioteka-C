@@ -1,7 +1,18 @@
+/**
+ * @file reports.c
+ * @brief This file contains functions for generating reports in the library system.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "reports.h"
 
+/**
+ * @brief Generates the loan history report.
+ * 
+ * @param loans Array of loans.
+ * @param loanCount Number of loans.
+ */
 void generateLoanHistory(Loan *loans, int loanCount) {
     printf("Historia wypożyczeń:\n");
     for (int i = 0; i < loanCount; i++) {
@@ -11,6 +22,14 @@ void generateLoanHistory(Loan *loans, int loanCount) {
     }
 }
 
+/**
+ * @brief Generates the most borrowed books report.
+ * 
+ * @param loans Array of loans.
+ * @param loanCount Number of loans.
+ * @param books Array of books.
+ * @param bookCount Number of books.
+ */
 void mostBorrowedBooks(Loan *loans, int loanCount, Book *books, int bookCount) {
     int *borrowCounts = calloc(bookCount, sizeof(int));
     for (int i = 0; i < loanCount; i++) {

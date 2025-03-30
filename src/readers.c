@@ -1,8 +1,19 @@
+/**
+ * @file readers.c
+ * @brief This file contains functions for managing readers in the library system.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "readers.h"
 
+/**
+ * @brief Adds a new reader to the library.
+ * 
+ * @param readers Pointer to the array of readers.
+ * @param readerCount Pointer to the number of readers.
+ */
 void addReader(Reader **readers, int *readerCount) {
     (*readerCount)++;
     *readers = realloc(*readers, (*readerCount) * sizeof(Reader));
@@ -21,6 +32,13 @@ void addReader(Reader **readers, int *readerCount) {
     printf("Czytelnik został dodany.\n");
 }
 
+/**
+ * @brief Removes a reader from the library.
+ * 
+ * @param readers Pointer to the array of readers.
+ * @param readerCount Pointer to the number of readers.
+ * @param readerId ID of the reader to be removed.
+ */
 void removeReader(Reader **readers, int *readerCount, int readerId) {
     int found = 0;
     for (int i = 0; i < *readerCount; i++) {
@@ -40,6 +58,13 @@ void removeReader(Reader **readers, int *readerCount, int readerId) {
     }
 }
 
+/**
+ * @brief Searches for readers in the library based on a keyword.
+ * 
+ * @param readers Array of readers.
+ * @param readerCount Number of readers.
+ * @param keyword Keyword to search for.
+ */
 void searchReaders(Reader *readers, int readerCount, char *keyword) {
     printf("Wyniki wyszukiwania dla \"%s\":\n", keyword);
     int found = 0;
@@ -54,6 +79,12 @@ void searchReaders(Reader *readers, int readerCount, char *keyword) {
     }
 }
 
+/**
+ * @brief Lists all readers in the library.
+ * 
+ * @param readers Array of readers.
+ * @param readerCount Number of readers.
+ */
 void listReaders(Reader *readers, int readerCount) {
     printf("Lista czytelników:\n");
     for (int i = 0; i < readerCount; i++) {
