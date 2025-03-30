@@ -1,9 +1,24 @@
+/**
+ * @file loans.c
+ * @brief This file contains functions for managing book loans in the library system.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
 #include "loans.h"
 
+/**
+ * @brief Loans a book to a reader.
+ * 
+ * @param loans Pointer to the array of loans.
+ * @param loanCount Pointer to the number of loans.
+ * @param books Array of books.
+ * @param bookCount Number of books.
+ * @param readers Array of readers.
+ * @param readerCount Number of readers.
+ */
 void loanBook(Loan **loans, int *loanCount, Book *books, int bookCount, Reader *readers, int readerCount) {
     int bookId, readerId;
     printf("Podaj ID książki do wypożyczenia: ");
@@ -14,6 +29,7 @@ void loanBook(Loan **loans, int *loanCount, Book *books, int bookCount, Reader *
     Book *book = NULL;
     Reader *reader = NULL;
 
+    // Find the book by ID
     for (int i = 0; i < bookCount; i++) {
         if (books[i].id == bookId) {
             book = &books[i];
@@ -21,6 +37,7 @@ void loanBook(Loan **loans, int *loanCount, Book *books, int bookCount, Reader *
         }
     }
 
+    // Find the reader by ID
     for (int i = 0; i < readerCount; i++) {
         if (readers[i].id == readerId) {
             reader = &readers[i];
@@ -61,6 +78,15 @@ void loanBook(Loan **loans, int *loanCount, Book *books, int bookCount, Reader *
     printf("Książka została wypożyczona.\n");
 }
 
+/**
+ * @brief Returns a book that was loaned.
+ * 
+ * @param loans Array of loans.
+ * @param loanCount Number of loans.
+ * @param books Array of books.
+ * @param bookCount Number of books.
+ * @param loanId ID of the loan to be returned.
+ */
 void returnBook(Loan *loans, int loanCount, Book *books, int bookCount, int loanId) {
     Loan *loan = NULL;
     for (int i = 0; i < loanCount; i++) {
@@ -95,6 +121,12 @@ void returnBook(Loan *loans, int loanCount, Book *books, int bookCount, int loan
     printf("Książka została zwrócona.\n");
 }
 
+/**
+ * @brief Lists all loans in the library.
+ * 
+ * @param loans Array of loans.
+ * @param loanCount Number of loans.
+ */
 void listLoans(Loan *loans, int loanCount) {
     printf("Lista wypożyczeń:\n");
     for (int i = 0; i < loanCount; i++) {

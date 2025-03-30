@@ -27,6 +27,29 @@ The Library Management System is a software application designed to help librari
    ```
 2. Navigate through the main menu and submenus to manage books, readers, loans, and generate reports.
 
+## Modules
+
+### books.c
+This module contains functions for managing books in the library system. It provides functionalities to add, remove, update, search, and list books.
+
+### files.c
+This module contains functions for loading and saving data to and from files. It handles the persistence of books, readers, and loans data.
+
+### loans.c
+This module contains functions for managing book loans in the library system. It provides functionalities to loan and return books, and list all loans.
+
+### main.c
+This module contains the main function to start the library management system. It initializes the system and displays the main menu.
+
+### readers.c
+This module contains functions for managing readers in the library system. It provides functionalities to add, remove, search, and list readers.
+
+### reports.c
+This module contains functions for generating reports in the library system. It provides functionalities to generate loan history and most borrowed books reports.
+
+### ui.c
+This module contains the user interface functions for the library management system. It handles the display of menus and user input for managing books, readers, loans, and generating reports.
+
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
